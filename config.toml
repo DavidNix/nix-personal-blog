@@ -1,4 +1,4 @@
-baseurl = "https://davidnix.github.io/blog"
+baseurl = "https://davidnix.github.io/blog/"
 languageCode = "en-us"
 title = "I'm David Nix"
 theme = "hugo-steam-theme"
