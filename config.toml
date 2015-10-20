@@ -1,4 +1,4 @@
-baseurl = "http://replace-this-with-your-domain.com/"
+baseurl = "https://davidnix.github.io/blog"
 languageCode = "en-us"
 title = "I'm David Nix"
 theme = "hugo-steam-theme"
