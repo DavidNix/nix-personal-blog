@@ -2,9 +2,9 @@ baseurl = "http://replace-this-with-your-domain.com/"
 languageCode = "en-us"
 title = "I'm David Nix"
 theme = "hugo-steam-theme"
-disqusShortname = "spf13"
+disqusShortname = "davidnix"
 paginate = 10
-canonifyurls: true
+canonifyurls = true
 
 [params]
 
