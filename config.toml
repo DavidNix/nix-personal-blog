@@ -1,6 +1,6 @@
 baseUrl = "https://davidnix.github.io/"
 languageCode = "en-us"
-title = "Serial Startup Engineer, Golang and iOS"
+title = "Nix's Blog - Tutorials, Opinions, and Ramblings"
 theme = "hugo-steam-theme"
 disqusShortname = "davidnix"
 paginate = 10
