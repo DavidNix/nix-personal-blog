@@ -1,4 +1,4 @@
-baseurl = "https://davidnix.github.io/blog/"
+baseurl = "https://davidnix.github.io"
 languageCode = "en-us"
 title = "I'm David Nix"
 theme = "hugo-steam-theme"
@@ -9,7 +9,7 @@ canonifyurls = true
 [params]
 
 	title = "David Nix"
-	subtitle = "Native App Zealot, Golang Evangelist"
+	subtitle = "Serial Startup Engineer, Golang and iOS"
 	copyright = ""
 
 	# You can choose between green, orange, red and blue.
