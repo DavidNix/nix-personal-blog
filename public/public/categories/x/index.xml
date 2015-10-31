@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>X on I&#39;m David Nix</title>
+    <link>http://localhost:1313/categories/x/</link>
+    <description>Recent content in X on I&#39;m David Nix</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 19 Oct 2015 19:17:24 -0600</lastBuildDate>
+    <atom:link href="http://localhost:1313/categories/x/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>test_post1</title>
+      <link>http://localhost:1313/post/test_post1/</link>
+      <pubDate>Mon, 19 Oct 2015 19:17:24 -0600</pubDate>
+      
+      <guid>http://localhost:1313/post/test_post1/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

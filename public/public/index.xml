@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>I&#39;m David Nix</title>
+    <link>https://davidnix.github.io/blog/</link>
+    <description>Recent content on I&#39;m David Nix</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 19 Oct 2015 19:17:24 -0600</lastBuildDate>
+    <atom:link href="https://davidnix.github.io/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Test Post Title 1</title>
+      <link>https://davidnix.github.io/blog/post/test_post1/</link>
+      <pubDate>Mon, 19 Oct 2015 19:17:24 -0600</pubDate>
+      
+      <guid>https://davidnix.github.io/blog/post/test_post1/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>https://davidnix.github.io/blog/about/</link>
+      <pubDate>Fri, 16 Oct 2015 16:18:01 -0600</pubDate>
+      
+      <guid>https://davidnix.github.io/blog/about/</guid>
+      <description>
+
+&lt;h1 id=&#34;about-me:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;About Me&lt;/h1&gt;
+
+&lt;p&gt;Just some test content, and such&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
