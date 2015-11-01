@@ -1,6 +1,6 @@
 baseUrl = "https://davidnix.github.io/"
 languageCode = "en-us"
-title = "Nix's Blog - Tutorials, Opinions, and Ramblings"
+title = "Nix's Blog - Tutorials, Opinions, Rants"
 disqusShortname = "davidnix"
 paginate = 10
 canonifyurls = true
@@ -8,7 +8,7 @@ canonifyurls = true
 [params]
 
 	title = "David Nix"
-	subtitle = "Serial Startup Engineer, Golang and iOS"
+	subtitle = "Startup Engineer, Golang and iOS"
 	copyright = ""
 
 	# You can choose between green, orange, red and blue.
