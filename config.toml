@@ -36,4 +36,4 @@ canonifyurls = true
 	keepReadingStr = "Keep reading"
 	backtotopStr = "Back to top"
 	shareStr = "Share"
-	pageNotFoundTitle = "404 - Page not found"
+	pageNotFoundTitle = "Aw shucks, page not found. :-("
