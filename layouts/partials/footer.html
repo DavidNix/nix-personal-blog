@@ -7,6 +7,9 @@
 		    {{ with .Site.Params.github }}
 		    <a href="//github.com/{{ . }}" target="_blank" title="GitHub"><i class="fa fa-2x fa-fw fa-github"></i> <span class="hidden">GitHub</span></a>&nbsp;
 		    {{ end }}
+		    {{ with .Site.Params.linkedin }}
+		    <a href="//linkedin.com/in/{{ . }}" target="_blank" title="Linkedin"><i class="fa fa-2x fa-fw fa-linkedin"></i> <span class="hidden">Linkedin</span></a>&nbsp;
+		    {{ end }}
 		    <a href="{{ .RSSlink }}" target="_blank" title="RSS"><i class="fa fa-2x fa-fw fa-rss"></i> <span class="hidden">RSS</span></a>
 		</section>
 
