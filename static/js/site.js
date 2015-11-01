@@ -14,3 +14,5 @@ window.obfuscate = function (selector) {
 };
 
 obfuscate("#email");
+
+window.Prod = window.location.hostname != "localhost"

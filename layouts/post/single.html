@@ -25,7 +25,7 @@
 	        </section>
 			
 			{{ if eq .Site.Params.comments "disqus" }}
-	        	{{ template "_internal/disqus.html" . }}
+	        	{{ template "partials/disqus.html" . }}
 	        {{ end }}
 			
 			{{ if eq .Site.Params.comments "googleplus" }}
