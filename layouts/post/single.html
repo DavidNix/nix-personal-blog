@@ -24,6 +24,8 @@
 	            </div>
 	        </section>
 			
+            {{ partial "mailchimp" . }}
+
 			{{ if eq .Site.Params.comments "disqus" }}
 	        	{{ template "partials/disqus.html" . }}
 	        {{ end }}
