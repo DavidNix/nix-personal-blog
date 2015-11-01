@@ -1,15 +1,12 @@
 {{ partial "head" . }}
-<body class="post-template">
+<body class="home-template">
 
     {{ partial "header" . }}
     {{ partial "navigation" . }}
 
     <main class="content" role="main">
-		<article class="post">
-	        <header>
-	        <h1 class="post-title">{{ .Site.Params.pageNotFoundTitle }}</h1>
-	        </header>
-	    </article>
+		{{ partial "post-list" . }}
+        {{ partial "pagination" . }}
     </main>
 
     {{ partial "footer" . }}

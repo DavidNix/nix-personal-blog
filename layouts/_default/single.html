@@ -5,12 +5,15 @@
     {{ partial "navigation" . }}
 
     <main class="content" role="main">
-		<article class="post">
+	    <article class="post">
 	        <header>
-	        <h1 class="post-title">{{ .Site.Params.pageNotFoundTitle }}</h1>
-	        </header>
+	        <h1 class="post-title">{{ .Title }}</h1>
+
+	        <section class="post-content">
+	            {{ .Content }}
+	        </section>
 	    </article>
-    </main>
+	</main>
 
     {{ partial "footer" . }}
     {{ partial "js" . }}
