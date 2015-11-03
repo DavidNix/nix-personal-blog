@@ -15,4 +15,24 @@ window.obfuscate = function (selector) {
 
 obfuscate("#email");
 
-window.Prod = window.location.hostname != "localhost"
+
+window.Prod = window.location.hostname != "localhost";
+
+
+$("#mc-embedded-subscribe-form").submit(function(e) {
+    var form = this;
+
+    // Stop form from submitting too early
+    e.preventDefault();
+
+    var email = $("#mce-EMAIL").val();
+
+    analytics.track("Subscribed to Newsletter", function() {
+        analytics.identify(email, {
+            email: email,
+        }, function() {
+            $(e.target).unbind('submit');
+            form.submit();
+        });
+    });
+});
