@@ -1,6 +1,6 @@
 baseUrl = "https://davidnix.github.io/"
 languageCode = "en-us"
-title = "Nix's Blog - Tutorials, Opinions, Rants"
+title = "Nix Blog - Tutorials, Opinions, Rants"
 disqusShortname = "davidnix"
 paginate = 10
 canonifyurls = true
