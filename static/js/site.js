@@ -16,9 +16,6 @@ window.obfuscate = function (selector) {
 obfuscate("#email");
 
 
-window.Prod = window.location.hostname != "localhost";
-
-
 $("#mc-embedded-subscribe-form").submit(function(e) {
     var form = this;
 
