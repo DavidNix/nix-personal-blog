@@ -26,9 +26,29 @@
       <guid>https://davidnix.github.io/about/</guid>
       <description>
 
-&lt;h1 id=&#34;about-me:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;About Me&lt;/h1&gt;
+&lt;p&gt;No, I’m not the antagonist from Disney&amp;rsquo;s &lt;a href=&#34;http://disney.wikia.com/wiki/David_Nix&#34;&gt;Tomorrowland&lt;/a&gt;.   Although I would like to rule a futuristic utopia, I’m actually a software engineer.  I live in Denver, CO with my amazing wife and soon-to-be daughter.  I love startups and the craft of software.&lt;/p&gt;
 
-&lt;p&gt;Just some test content, and such&lt;/p&gt;
+&lt;p&gt;During the day, I code iOS and &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt;.  My latest goal is to convince startups to &lt;a href=&#34;https://github.com/DavidNix/modern-web-apps-in-go&#34;&gt;use Go&lt;/a&gt;.  I’ve fallen out of love with Ruby on Rails for reasons you’ll find littered on the blog.&lt;/p&gt;
+
+&lt;p&gt;The blog is about code and startups.  And it’s brand new.  So, I’m not sure how it’s going to evolve.  I hope to self-publish a book or two.&lt;/p&gt;
+
+&lt;p&gt;In a nutshell:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;My philosophy aligns with Bob Martin, Martin Fowler, Rob Pike, and Ken Thompson.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;I embrace the unix philosophy.  Do one thing well and let me compose using libraries that also embrace the  unix way.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;I’m a unit test freak.  If I can’t test it, I’ll find another way.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;I’m a rabid fan of Google’s Go programming language (aka Golang).&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;My dying words will be “composition over inheritance”.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 id=&#34;consulting:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;Consulting&lt;/h2&gt;
+
+&lt;p&gt;I am available for part-time consulting for iOS.  I have experience architecting iOS apps for long-term maintainability and stability.  Please contact me using a method below.  My first born and employment at &lt;a href=&#34;http://cirrusmd.com&#34;&gt;CirrusMD&lt;/a&gt; prevent me from contact work.  And yes, recruiters, that means I’m not available for full-time hire either.&lt;/p&gt;
 </description>
     </item>
     
