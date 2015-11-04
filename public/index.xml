@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nix&#39;s Blog - Tutorials, Opinions, Rants</title>
+    <title>Nix Blog - Tutorials, Opinions, Rants</title>
     <link>https://davidnix.github.io/</link>
-    <description>Recent content on Nix&#39;s Blog - Tutorials, Opinions, Rants</description>
+    <description>Recent content on Nix Blog - Tutorials, Opinions, Rants</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 19 Oct 2015 19:17:24 -0600</lastBuildDate>
