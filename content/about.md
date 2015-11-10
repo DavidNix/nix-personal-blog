@@ -12,9 +12,9 @@ The blog is about code and startups.  And it’s brand new.  So, I’m not sure 
 
 Me in a nutshell:
 
-* My philosophy aligns with Bob Martin, Martin Fowler, Rob Pike, and Ken Thompson.
+* My thoughts align with Bob Martin, Martin Fowler, Rob Pike, and Ken Thompson.
 
-* I embrace the unix philosophy.  Do one thing well and let me compose using libraries that also embrace the  unix way.
+* I embrace the unix philosophy.  Do one thing well and let me compose using libraries that also embrace the unix way.
 
 * I’m a unit test freak.  If I can’t test it, I’ll find another way.
 
@@ -24,4 +24,4 @@ Me in a nutshell:
 
 # Consulting
 
-I am available for part-time consulting for iOS.  I have experience architecting iOS apps for long-term maintainability and stability.  Please contact me using a method below.  My first born and employment at [CirrusMD](http://cirrusmd.com) prevent me from contact work.  And yes, recruiters, that means I’m not available for full-time hire either.  
+I am available for part-time consulting for iOS.  I have experience architecting iOS apps for long-term maintainability and stability.  Please contact me using a method below.  My first born and employment at [CirrusMD](http://cirrusmd.com) prevent me from contract work.
