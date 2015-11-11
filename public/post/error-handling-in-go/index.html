@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+    <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+    <title>Go&#39;s Error Handling is Elegant &middot; Nix Blog - Tutorials, Opinions, Rants</title>
+    <meta name="author" content="David Nix">
+    <meta name="description" content="David Nix&#39;s Blog">
+    <meta name="generator" content="Hugo 0.14" />
+    <meta name="HandheldFriendly" content="True">
+    <meta name="MobileOptimized" content="320">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <link rel="shortcut icon" href="https://davidnix.github.io/img/favicon.ico">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/2.1.2/normalize.min.css">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://davidnix.github.io/css/screen.css">
+    <link rel="stylesheet" href="https://davidnix.github.io/css/github.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/default.min.css">
+
+    <!-- Stylesheet for theme color -->
+    <style type="text/css">
+    a, a:visited {color: #3498db;}
+    .pagination a {color: #3498db;}
+    .gist .gist-file .gist-meta a:visited {color: #3498db !important;}
+    a:focus, a:hover {color: #2079b4;}
+    h1.post-title a:focus, h1.post-title a:hover, h1.blog-title a:focus, h1.blog-title a:hover {color: #2079b4;}
+    .older-posts:hover, .newer-posts:hover {color: #2079b4;}
+</style>
+</head>
+<body class="post-template">
+
+    <header id="site-head">
+	
+	<h1 class="blog-title"><a href="https://davidnix.github.io/">David Nix</a></h1>
+	
+	
+	<h1 class="blog-subtitle">Startup Software Developer, Golang and iOS</h1>
+	
+</header>
+    
+<nav class="menu" role="nav">
+    <ul>
+        
+        	<li class="nav nav-current"><a href="https://davidnix.github.io/about">About</a></li>
+      	
+    </ul>
+</nav>
+
+
+    <main class="content" role="main">
+	    <article class="post">
+	        <header>
+	        <h1 class="post-title">Go&#39;s Error Handling is Elegant</h1>
+	        <div class="post-meta"><time datetime="10 November 2015">10 November 2015</time></div>
+	        </header>
+
+	        <section class="post-content">
+	            
+
+<p>I&rsquo;m writing in response to <a href="http://spaces-vs-tabs.com/4-weeks-of-golang-the-good-the-bad-and-the-ugly/">this
+article</a>.
+Specifically, the section titled &ldquo;The Ugly&rdquo; featuring error handling.</p>
+
+<p>New programmers to Go often critique Go&rsquo;s error handling.  Notice I didn&rsquo;t say
+<em>exception</em> handling.  Go doesn&rsquo;t have exceptions, although you can sort of
+emulate it with <a href="http://blog.golang.org/defer-panic-and-recover">panic and
+recover</a>.  But I highly
+recommend against it.  It&rsquo;s an anti-pattern if used too often.  Go has a
+simpler way of handling when something goes wrong in your program.</p>
+
+<p>The Go authors put a lot of thought into error handling.  I feel they came up
+with one of the better solutions out there.  It&rsquo;s simple and elegant.</p>
+
+<p>As a refresher, Go allows multiple return values.  By convention, if something
+can go wrong, a function returns an error as its last return value.</p>
+
+<pre><code class="language-go">func ETPhoneHome(msg string) (string, error) {
+    // implementation
+}
+</code></pre>
+
+<p>An <code>error</code> type is just:</p>
+
+<pre><code class="language-go">type error interface {
+    Error() string
+}
+</code></pre>
+
+<p>This means <strong>any</strong> type that implements a method called <code>Error()</code> returning a
+<code>string</code> satisfies the <code>error</code> interface. The string returned should describe
+what went wrong. Check out Go&rsquo;s
+<a href="https://golang.org/doc/effective_go.html#interfaces">interfaces</a> if you&rsquo;re
+confused.</p>
+
+<p>In a lot of sample Go code, you see:</p>
+
+<pre><code class="language-go">response, err := ETPhoneHome(&quot;I can't fly this bike forever!&quot;)
+if err != nil {
+    // handle the error, often:
+    return err
+}
+// do something with response
+</code></pre>
+
+<p>A lot of programmers have beef with this seemingly constant nil checking:</p>
+
+<pre><code class="language-go">if err != nil {
+    // handle the error
+}
+</code></pre>
+
+<p>Let&rsquo;s take a break from Go and compare it to other languages.</p>
+
+<p>There&rsquo;s ye olde Java:</p>
+
+<pre><code class="language-java">// Java
+try {
+    String response = ET.phoneHome(&quot;I hate white lab coats.&quot;)
+    System.out.println(response);
+} catch(Exception e) {
+    System.out.println(&quot;Exception thrown  :&quot; + e);
+}
+</code></pre>
+
+<p>Or shiny new Swift 2:</p>
+
+<pre><code class="language-swift">// Swift
+// Option 1
+do {
+    let response = try ETPhoneHome(&quot;Those are guns not walkie talkies!&quot;)
+    // process response
+} catch (let error as NSError) {
+    print(&quot;oops&quot;, error)
+}
+
+// Option 2: assign to an optional variable
+let response = try? ETPhoneHome(&quot;Halp!&quot;)
+
+// Option 3: crash the app if an error is thrown
+let response = try! ETPhoneHome(&quot;BOOM&quot;)
+</code></pre>
+
+<p>So which is simpler? <code>Do, try, catch</code> and friends?  Choosing among several
+error catching options?  Or just:</p>
+
+<pre><code class="language-go">// Go
+if err != nil {
+    // handle the error
+}
+</code></pre>
+
+<p>But you could argue, only one caller needs the try/catch dance.  Anything
+downstream could throw exceptions all the live long day. In practice, that&rsquo;s
+rarely the case.  With Swift, I find myself deciding between <code>do/catch</code> or
+<code>try?</code> quite often, especially in unit tests.</p>
+
+<p>Interpreted languages, like Ruby, are more concise because you aren&rsquo;t required
+to handle exceptions at all.  Swift and Java won&rsquo;t compile until you force the
+caller to handle the exception.  Go won&rsquo;t compile unless the caller handles or
+ignores the error value.</p>
+
+<p>With Ruby, you just have to <em>know</em> that a method might raise an exception.
+Rails uses a bang in the method name (ex: <code>model.save!</code>) to show that some sort
+of exception may be raised.  But otherwise, good luck trying to find when,
+where, or what. Therefore, it&rsquo;s more common in interpreted languages to see
+exceptions at runtime. Go (along with Swift and Java) try to tell you about all
+error cases up front to limit unexpected behavior at runtime.</p>
+
+<p>The Go authors argue that not all exceptions are exceptional.  Not all errors
+should crash your app. I agree.  If you can gracefully recover from an error,
+you should do so.  Your app will be stable and robust.  Of course, easier said
+than done.  It takes more effort on the programmer&rsquo;s part. In Ruby you can
+pinky swear an exception will never happen and move on. That is, until a
+customer calls you complaining about your app not working.</p>
+
+<h2 id="errors-are-values:6459a39e6d3fb0d6cf471ef567c5fb46">Errors are Values</h2>
+
+<p>The Go team purposefully chose errors to be values.</p>
+
+<blockquote>
+<p>Values can be programmed, and since errors are values, errors can be programmed.
+Errors are not like exceptions.  There&rsquo;s nothing special about them, whereas an
+unhandled exception can crash your program.</p>
+</blockquote>
+
+<p>This above is from <a href="https://blog.golang.org/errors-are-values">https://blog.golang.org/errors-are-values</a> by Rob Pike. Do
+yourself a huge favor and read Pike&rsquo;s blog post next.</p>
+
+<p>In Go, functions pass errors around just like any other type.  Because indeed
+they are just a type.</p>
+
+<p>Exceptions, on the other hand, are unique.  They can wreak havoc on your
+program if left unchecked.  (I realize there are technical differences between
+Swift errors and exceptions. But the semantics are the same in regards to error
+handling.)</p>
+
+<p>So, if we can handle errors using simple values, why do we need this special
+exception stuff?  Why not leave that complexity out of the language?</p>
+
+<p>I&rsquo;m not sure if the Go authors reached that exact conclusion, but it make sense
+to me.</p>
+
+<h2 id="flow-of-control:6459a39e6d3fb0d6cf471ef567c5fb46">Flow of Control</h2>
+
+<p>Rob Pike also writes:</p>
+
+<blockquote>
+<p>Error handling [in Go] does not obscure the flow of control.</p>
+</blockquote>
+
+<p>Since an <code>error</code> in Go must either be 1) handled/ignored right then and there or 2)
+returned to the caller.  You can track the path of the <code>error</code>.</p>
+
+<p>The flow of control is less clear in other languages.  Take Swift:</p>
+
+<pre><code class="language-swift">// Swift
+do {
+    // If successful, the happy path is now nested.
+} catch (let error as NSError) {
+    // handle error
+}
+</code></pre>
+
+<p>For simple things, it&rsquo;s okay to have that nesting.  But what if there&rsquo;s
+additional nesting like <code>if/else</code>? It could quickly become hard to read.</p>
+
+<p>Whereas in Go:</p>
+
+<pre><code class="language-go">// Go
+result, err := SomeFunction()
+if err != nil {
+    // handle the error
+}
+// happy path proceeds as normal without nesting
+</code></pre>
+
+<p>Swift 2 introduced the <code>guard</code> statement to improve flow of control. But you
+can only use it like this:</p>
+
+<pre><code class="language-swift">// Swift
+guard let result = try? SomeFunction() else {
+    return
+}
+// result is in scope, proceed with happy path
+</code></pre>
+
+<p>So you can&rsquo;t inspect the error using a Swift <code>guard</code>. But what if you want to
+inspect the error AND avoid the nesting?  You can do this in Swift:</p>
+
+<pre><code class="language-swift">// Swift
+var result: Any?
+do {
+    result = SomeFunction()
+} catch (let error as NSError) {
+    // handle error
+}
+// proceed with happy path
+</code></pre>
+
+<p>So how is the above cleaner than the below?</p>
+
+<pre><code class="language-go">// Go
+result, err := SomeFunction()
+if err != nil {
+    // handle the error
+}
+// trot down the happy path
+</code></pre>
+
+<p>In Ruby, raising and catching an exception acts like the dreaded <code>GOTO</code>
+statement. Ruby code that raises an exception can be arbitrarily deep. The
+caller that rescues the exception can be anywhere up the stack. So, rescuing
+the exception is like saying &ldquo;GOTO this random place up the stack&rdquo;.  That&rsquo;s
+terrible flow of control. I&rsquo;ve spent my fair share of time debugging Ruby code
+with errant exceptions.  It&rsquo;s no fun at all and hard to trace.</p>
+
+<h2 id="code-your-way-out-of-it:6459a39e6d3fb0d6cf471ef567c5fb46">Code Your Way Out of It</h2>
+
+<p>Just because you can do this</p>
+
+<pre><code class="language-go">if err != nil {
+    // handle the error
+}
+</code></pre>
+
+<p>doesn&rsquo;t mean you have to litter it everywhere in your code.  You&rsquo;re free to
+code your way out of it. Delegate error handling to a function or an object.
+You&rsquo;re a programmer after all.  Write an abstraction!</p>
+
+<p>As a simple example, when I write CLI tools in Go, I usually have a function:</p>
+
+<pre><code class="language-go">func checkErr(err error) {
+    if err != nil {
+        fmt.Println(&quot;ERROR:&quot;, err)
+        os.Exit(1)
+    }
+}
+</code></pre>
+
+<p>In a CLI tool, this works fine.  But, um, don&rsquo;t do that in a web server.</p>
+
+<p>Rob Pike admits helper functions don&rsquo;t always do the trick.  Again, read
+<a href="https://blog.golang.org/errors-are-values">https://blog.golang.org/errors-are-values</a> for a great example of Pike coding
+his way out of messy error handling.</p>
+
+<h2 id="conclusion:6459a39e6d3fb0d6cf471ef567c5fb46">Conclusion</h2>
+
+<p>I hope I&rsquo;ve shown Go&rsquo;s error handling isn&rsquo;t that bad. I even deem it elegant. I
+think a lot of programmers new to Go get frustrated because several functions
+in the standard library return errors. That means you have to handle them.
+Which in turn means you have to spend effort on them. Which in turn means
+you&rsquo;re writing rock solid, stable software. That&rsquo;s not a bad deal.</p>
+
+	        </section>
+
+	        <section class="post-tags" style="padding-bottom:60px;">
+	            <div class="post-meta tags">
+	            <i class="fa fa-fw fa-tag"></i>
+	            
+	            <a href="https://davidnix.github.io/tags/Go">Go </a>
+	            
+	            </div>
+	        </section>
+			
+            <section>
+<link href="//cdn-images.mailchimp.com/embedcode/classic-081711.css" rel="stylesheet" type="text/css">
+<style type="text/css">
+    #mc_embed_signup{background:#fff; clear:left; font:14px Helvetica,Arial,sans-serif; }
+     
+</style>
+<div id="mc_embed_signup">
+<form action="//davidnix.us12.list-manage.com/subscribe/post?u=28ffb7266ffbe0d683dc8c9bc&amp;id=befe672938" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+    <div id="mc_embed_signup_scroll">
+    <p>Subscribe to be notified of new posts.</p>
+<div class="mc-field-group">
+    <label for="mce-EMAIL">Email Address </label>
+    <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
+</div>
+    <div id="mce-responses" class="clear">
+        <div class="response" id="mce-error-response" style="display:none"></div>
+        <div class="response" id="mce-success-response" style="display:none"></div>
+    </div>    
+    <div style="position: absolute; left: -5000px;"><input type="text" name="b_28ffb7266ffbe0d683dc8c9bc_befe672938" tabindex="-1" value=""></div>
+    <div class="clear"><input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+    </div>
+</form>
+</div>
+<script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script><script type='text/javascript'>(function($) {window.fnames = new Array(); window.ftypes = new Array();fnames[0]='EMAIL';ftypes[0]='email';fnames[1]='FNAME';ftypes[1]='text';fnames[2]='LNAME';ftypes[2]='text';}(jQuery));var $mcj = jQuery.noConflict(true);</script>
+</section>
+
+
+			
+	        	<div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'davidnix';
+    var disqus_identifier = 'https:\/\/davidnix.github.io\/post\/error-handling-in-go\/';
+    var disqus_title = 'Go\x27s Error Handling is Elegant';
+    var disqus_url = 'https:\/\/davidnix.github.io\/post\/error-handling-in-go\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+	        
+			
+			
+
+	        <section class="share">
+	            <p class="backtotop"><a data-scroll href="#site-head"><i class="fa fa-lg fa-fw fa-angle-double-up"></i></a><a data-scroll class="backtotoptext" href="#site-head"> Back to top</a></p>
+	            <p class="info prompt">Share</p>
+	            <a href="http://twitter.com/share?text=Go%27s%20Error%20Handling%20is%20Elegant&url=https%3a%2f%2fdavidnix.github.io%2fpost%2ferror-handling-in-go%2f" title="Share on Twitter"
+	                onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+	                <i class="fa fa-2x fa-fw fa-twitter-square"></i> <span class="hidden">Twitter</span>
+	            </a>
+	            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fdavidnix.github.io%2fpost%2ferror-handling-in-go%2f" title="Share on Facebook"
+	                onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+	                <i class="fa fa-2x fa-fw fa-facebook-square" style="margin-left: -8px"></i> <span class="hidden">Facebook</span>
+	            </a>
+	            <a href="https://plus.google.com/share?url=https%3a%2f%2fdavidnix.github.io%2fpost%2ferror-handling-in-go%2f" title="Share on Google+"
+	               onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+	                <i class="fa fa-2x fa-fw fa-google-plus-square" style="margin-left: -8px"></i> <span class="hidden">Google+</span>
+	            </a>
+	        </section>
+
+	        <footer class="post-footer">
+	            <section class="author">
+    <div class="authorimage" style="background: url(https://davidnix.github.io/img/avatar.png)"></div>
+    <h4>David Nix</h4>
+    <p class="bio">I love code and startups. Programming is hard. Let&rsquo;s make it a little easier.</p>
+    <p class="meta">
+      <i class="fa fa-fw fa-map-marker"></i> Denver, CO
+    </p>
+</section>
+
+	        </footer>
+	    </article>
+	</main>
+
+    <footer class="site-footer">
+	<div class="inner">
+		<section class="footer-social">
+			
+		    <a href="//twitter.com/@davidnix_" target="_blank" title="Twitter"><i class="fa fa-2x fa-fw fa-twitter"></i> <span class="hidden">Twitter</span></a>&nbsp;
+		    
+		    
+		    <a href="//github.com/DavidNix" target="_blank" title="GitHub"><i class="fa fa-2x fa-fw fa-github"></i> <span class="hidden">GitHub</span></a>&nbsp;
+		    
+		    
+		    <a href="//linkedin.com/in/nixdavid" target="_blank" title="Linkedin"><i class="fa fa-2x fa-fw fa-linkedin"></i> <span class="hidden">Linkedin</span></a>&nbsp;
+		    
+		    <a id="email" href="#" title="Email"><i class="fa fa-2x fa-fw fa-envelope-o"></i> <span class="hidden">Email</span></a>
+		    <a href="" target="_blank" title="RSS"><i class="fa fa-2x fa-fw fa-rss"></i> <span class="hidden">RSS</span></a>
+		</section>
+
+		<section class="copyright">&copy; 2015 <a href="https://davidnix.github.io/">David Nix</a>. </section>
+	</div>
+</footer>
+
+    <script type="text/javascript">window.Prod = window.location.hostname != "localhost";</script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="https://davidnix.github.io/js/smooth-scroll.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
+
+<script>
+    smoothScroll.init({
+        speed: 800,
+        easing: 'easeInOutCubic',
+        updateURL: false,
+        offset: 125,
+    });
+</script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script type="text/javascript">
+    !function(){var analytics=window.analytics=window.analytics||[];if(!analytics.initialize)if(analytics.invoked)window.console&&console.error&&console.error("Segment snippet included twice.");else{analytics.invoked=!0;analytics.methods=["trackSubmit","trackClick","trackLink","trackForm","pageview","identify","reset","group","track","ready","alias","page","once","off","on"];analytics.factory=function(t){return function(){var e=Array.prototype.slice.call(arguments);e.unshift(t);analytics.push(e);return analytics}};for(var t=0;t<analytics.methods.length;t++){var e=analytics.methods[t];analytics[e]=analytics.factory(e)}analytics.load=function(t){var e=document.createElement("script");e.type="text/javascript";e.async=!0;e.src=("https:"===document.location.protocol?"https://":"http://")+"cdn.segment.com/analytics.js/v1/"+t+"/analytics.min.js";var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(e,n)};analytics.SNIPPET_VERSION="3.1.0";
+        if (window.Prod == true) {
+            analytics.load("GS1Kaig3WDAuPSWlQ4YI0aJDfzhxMtZD");
+        } else {
+            analytics.load("1YSUkgFw3q74fcWVVQpiurGsOgdQZM81");
+        }
+    }}();
+</script>
+
+<script type="text/javascript">
+    analytics.page();
+</script>
+
+<script src="https://davidnix.github.io/js/site.js"></script>
+
+
+</body>
+</html>

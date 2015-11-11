@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Nix Blog - Tutorials, Opinions, Rants</title>
-    <link>https://davidnix.github.io/</link>
-    <description>Recent content on Nix Blog - Tutorials, Opinions, Rants</description>
+    <title>Go on Nix Blog - Tutorials, Opinions, Rants</title>
+    <link>https://davidnix.github.io/tags/go/</link>
+    <description>Recent content in Go on Nix Blog - Tutorials, Opinions, Rants</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 10 Nov 2015 21:47:04 -0700</lastBuildDate>
-    <atom:link href="https://davidnix.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://davidnix.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go&#39;s Error Handling is Elegant</title>
@@ -270,40 +270,6 @@ think a lot of programmers new to Go get frustrated because several functions
 in the standard library return errors. That means you have to handle them.
 Which in turn means you have to spend effort on them. Which in turn means
 you&amp;rsquo;re writing rock solid, stable software. That&amp;rsquo;s not a bad deal.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>About</title>
-      <link>https://davidnix.github.io/about/</link>
-      <pubDate>Fri, 16 Oct 2015 16:18:01 -0600</pubDate>
-      
-      <guid>https://davidnix.github.io/about/</guid>
-      <description>
-
-&lt;p&gt;No, I’m not the antagonist from Disney&amp;rsquo;s &lt;a href=&#34;http://disney.wikia.com/wiki/David_Nix&#34;&gt;Tomorrowland&lt;/a&gt;.   Although ruling a futuristic utopia sounds fun, I’m really a software developer.  I live in Denver with my amazing wife and daughter.&lt;/p&gt;
-
-&lt;p&gt;During the day, I code iOS and &lt;a href=&#34;https://golang.org&#34;&gt;Go&lt;/a&gt;. For fun, I code mostly Go.  My latest endeavor is convincing startups to &lt;a href=&#34;https://github.com/DavidNix/modern-web-apps-in-go&#34;&gt;use Go&lt;/a&gt;. I used to write a lot of Ruby and Rails. But no longer, thank goodness.&lt;/p&gt;
-
-&lt;p&gt;The blog is about code and startups.  And it’s brand new.  So, I’m not sure how it’s going to evolve.  Programming is hard.  I want to help others over stumbling blocks I faced.  I hope to self-publish a book or two.&lt;/p&gt;
-
-&lt;p&gt;In a nutshell:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;p&gt;My thoughts align with Bob Martin, Martin Fowler, Rob Pike, and Ken Thompson.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;I embrace the unix philosophy.  Do one thing well and let me compose using libraries that also embrace the unix way.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;I’m a unit test freak.  If I can’t test it, I’ll find another way.&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;I’m a rabid fan of Google’s Go programming language (aka Golang).&lt;/p&gt;&lt;/li&gt;
-
-&lt;li&gt;&lt;p&gt;My dying words will be “composition over inheritance”.&lt;/p&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h1 id=&#34;consulting:6083a88ee3411b0d17ce02d738f69d47&#34;&gt;Consulting&lt;/h1&gt;
-
-&lt;p&gt;I am available for part-time consulting for iOS.  I have experience architecting iOS apps for long-term maintainability and stability.  Please contact me using a method below.  My first born and employment at &lt;a href=&#34;http://cirrusmd.com&#34;&gt;CirrusMD&lt;/a&gt; prevent me from contract work.&lt;/p&gt;
 </description>
     </item>
     

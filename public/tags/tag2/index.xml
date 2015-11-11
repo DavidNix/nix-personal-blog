@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tag2 on Nix Blog - Tutorials, Opinions, Rants</title>
-    <link>https://davidnix.github.io/tags/tag2/</link>
+    <link>http://localhost:1313/tags/tag2/</link>
     <description>Recent content in Tag2 on Nix Blog - Tutorials, Opinions, Rants</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 19 Oct 2015 19:17:24 -0600</lastBuildDate>
-    <atom:link href="https://davidnix.github.io/tags/tag2/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/tag2/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Test Post Title 1</title>
-      <link>https://davidnix.github.io/post/test_post1/</link>
+      <link>http://localhost:1313/post/test_post1/</link>
       <pubDate>Mon, 19 Oct 2015 19:17:24 -0600</pubDate>
       
-      <guid>https://davidnix.github.io/post/test_post1/</guid>
+      <guid>http://localhost:1313/post/test_post1/</guid>
       <description></description>
     </item>
     
