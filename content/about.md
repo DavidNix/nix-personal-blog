@@ -4,13 +4,13 @@ title = "About"
 menu = "main"
 +++
 
-No, I’m not the antagonist from Disney's [Tomorrowland](http://disney.wikia.com/wiki/David_Nix).   Although I would like to rule a futuristic utopia, I’m actually a software engineer.  I live in Denver with my amazing wife and soon-to-be daughter.
+No, I’m not the antagonist from Disney's [Tomorrowland](http://disney.wikia.com/wiki/David_Nix).   Although ruling a futuristic utopia sounds fun, I’m really a software engineer.  I live in Denver with my amazing wife and daughter.
 
-During the day, I code iOS and [Go](https://golang.org).  My latest endeavor is convincing startups to [use Go](https://github.com/DavidNix/modern-web-apps-in-go).  I’ve fallen out of love with Ruby on Rails for reasons you’ll find littered on the blog.
+During the day, I code iOS and [Go](https://golang.org). For fun, I code mostly Go.  My latest endeavor is convincing startups to [use Go](https://github.com/DavidNix/modern-web-apps-in-go). I used to write a lot of Ruby and Rails. But no longer, thank goodness.
 
-The blog is about code and startups.  And it’s brand new.  So, I’m not sure how it’s going to evolve.  I hope to self-publish a book or two.
+The blog is about code and startups.  And it’s brand new.  So, I’m not sure how it’s going to evolve.  Programming is hard.  I want to help others over stumbling blocks I faced.  I hope to self-publish a book or two.
 
-Me in a nutshell:
+In a nutshell:
 
 * My thoughts align with Bob Martin, Martin Fowler, Rob Pike, and Ken Thompson.
 
