@@ -4,7 +4,7 @@ title = "About"
 menu = "main"
 +++
 
-No, I’m not the antagonist from Disney's [Tomorrowland](http://disney.wikia.com/wiki/David_Nix).   Although ruling a futuristic utopia sounds fun, I’m really a software engineer.  I live in Denver with my amazing wife and daughter.
+No, I’m not the antagonist from Disney's [Tomorrowland](http://disney.wikia.com/wiki/David_Nix).   Although ruling a futuristic utopia sounds fun, I’m really a software developer.  I live in Denver with my amazing wife and daughter.
 
 During the day, I code iOS and [Go](https://golang.org). For fun, I code mostly Go.  My latest endeavor is convincing startups to [use Go](https://github.com/DavidNix/modern-web-apps-in-go). I used to write a lot of Ruby and Rails. But no longer, thank goodness.
 

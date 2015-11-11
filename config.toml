@@ -8,7 +8,7 @@ canonifyurls = true
 [params]
 
 	title = "David Nix"
-	subtitle = "Startup Engineer, Golang and iOS"
+	subtitle = "Startup Software Developer, Golang and iOS"
 	copyright = ""
 
 	# You can choose between green, orange, red and blue.
@@ -17,8 +17,8 @@ canonifyurls = true
 	# To provide some metadata for search engines and the about section in the footer
 	# feel free to add a few information about you and your website.
 	name = "David Nix"
-	bio = "I'm a computer."
-	description = "Your description of the blog"
+	bio = "I love code and startups. Programming is hard. Let's make it a little easier."
+	description = "David Nix's Blog"
 	location = "Denver, CO" # optional
 	twitter = "@davidnix_" # optional
 	github = "DavidNix" # optional
