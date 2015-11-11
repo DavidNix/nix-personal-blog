@@ -143,7 +143,7 @@ Errors are not like exceptions.  There&amp;rsquo;s nothing special about them, w
 unhandled exception can crash your program.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;This above is from &lt;a href=&#34;https://blog.golang.org/errors-are-values&#34;&gt;https://blog.golang.org/errors-are-values&lt;/a&gt; by Rob Pike. Do
+&lt;p&gt;The above is from &lt;a href=&#34;https://blog.golang.org/errors-are-values&#34;&gt;https://blog.golang.org/errors-are-values&lt;/a&gt; by Rob Pike. Do
 yourself a huge favor and read Pike&amp;rsquo;s blog post next.&lt;/p&gt;
 
 &lt;p&gt;In Go, functions pass errors around just like any other type.  Because indeed

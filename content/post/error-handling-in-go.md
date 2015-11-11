@@ -134,7 +134,7 @@ The Go team purposefully chose errors to be values.
 Errors are not like exceptions.  There's nothing special about them, whereas an
 unhandled exception can crash your program.
 
-This above is from https://blog.golang.org/errors-are-values by Rob Pike. Do
+The above is from https://blog.golang.org/errors-are-values by Rob Pike. Do
 yourself a huge favor and read Pike's blog post next.
 
 In Go, functions pass errors around just like any other type.  Because indeed
