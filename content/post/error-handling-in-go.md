@@ -104,26 +104,27 @@ if err != nil {
 ```
 But you could argue, only one caller needs the try/catch dance.  Anything
 downstream could throw exceptions all the live long day. In practice, that's
-rarely the case.  With Swift especially, I find myself deciding between
-do/catch or try? quite often, especially in unit tests.
+rarely the case.  With Swift, I find myself deciding between `do/catch` or
+`try?` quite often, especially in unit tests.
 
-Interpreted languages, like Ruby, are more consise because you aren't required
+Interpreted languages, like Ruby, are more concise because you aren't required
 to handle exceptions at all.  Swift and Java won't compile until you force the
 caller to handle the exception.  Go won't compile unless the caller handles or
-ignores the returned error value.
+ignores the error value.
 
 With Ruby, you just have to *know* that a method might raise an exception.
 Rails uses a bang in the method name (ex: `model.save!`) to show that some sort
-of exception may be raised.  But otherwise, good luck trying to find when and
-where. Therefore, it's more common in interpreted languages to see exceptions
-at runtime. Go (along with Swift and Java) try to tell you about all error
-cases up front to limit errors at runtime.
+of exception may be raised.  But otherwise, good luck trying to find when,
+where, or what. Therefore, it's more common in interpreted languages to see
+exceptions at runtime. Go (along with Swift and Java) try to tell you about all
+error cases up front to limit unexpected behavior at runtime.
 
 The Go authors argue that not all exceptions are exceptional.  Not all errors
 should crash your app. I agree.  If you can gracefully recover from an error,
 you should do so.  Your app will be stable and robust.  Of course, easier said
 than done.  It takes more effort on the programmer's part. In Ruby you can
-pinky swear an exception will never happen and move on. 
+pinky swear an exception will never happen and move on. That is, until a
+customer calls you complaining about your app not working.
 
 ## Errors are Values
 
@@ -171,7 +172,7 @@ do {
 ```
 
 For simple things, it's okay to have that nesting.  But what if there's
-additonal nesting like `if/else`? It could quickly become hard to read.
+additional nesting like `if/else`? It could quickly become hard to read.
 
 Whereas in Go:
 
@@ -220,16 +221,16 @@ if err != nil {
 // trot down the happy path
 ```
 
-In Ruby, and other interpreted languages, raising and catching an exception
-acts like the dreaded `GOTO` statement. Ruby code that raises an exception can be
-arbitrarily deep. The caller that rescues the exception can be anywhere up the
-stack. So, rescuing the exception is like saying "GOTO this random place up the stack".
-That's terrible flow of control. I've spent my fair share of time debugging
-Ruby code with errant exceptions.  It's no fun at all and hard to trace.
+In Ruby, raising and catching an exception acts like the dreaded `GOTO`
+statement. Ruby code that raises an exception can be arbitrarily deep. The
+caller that rescues the exception can be anywhere up the stack. So, rescuing
+the exception is like saying "GOTO this random place up the stack".  That's
+terrible flow of control. I've spent my fair share of time debugging Ruby code
+with errant exceptions.  It's no fun at all and hard to trace.
 
 ## Code Your Way Out of It
 
-Just because you can do this:
+Just because you can do this
 
 ```go
 if err != nil {
@@ -257,3 +258,11 @@ In a CLI tool, this works fine.  But, um, don't do that in a web server.
 Rob Pike admits helper functions don't always do the trick.  Again, read
 https://blog.golang.org/errors-are-values for a great example of Pike coding
 his way out of messy error handling.
+
+## Conclusion
+
+I hope I've shown Go's error handling isn't that bad. I even deem it elegant. I
+think a lot of programmers new to Go get frustrated because several functions
+in the standard library return errors. That means you have to handle them.
+Which in turn means you have to spend effort on them. Which in turn means
+you're writing rock solid, stable software. That's not a bad deal.
