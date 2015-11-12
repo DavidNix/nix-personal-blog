@@ -153,9 +153,9 @@ if err != nil {
 </code></pre>
 
 <p>But you could argue, only one caller needs the try/catch dance.  Anything
-downstream could throw exceptions all the live long day. In my experience with
-Swift, that&rsquo;s rarely the case.  I find myself deciding between <code>do/catch</code> or
-<code>try?</code> quite often, especially in unit tests. It&rsquo;s quite laborious.</p>
+downstream could throw exceptions all the live long day. In practice, that&rsquo;s
+rarely the case.  With Swift, I find myself deciding between <code>do/catch</code> or
+<code>try?</code> quite often, especially in unit tests.</p>
 
 <p>Interpreted languages, like Ruby, are more concise because you aren&rsquo;t required
 to handle exceptions at all.  Swift and Java won&rsquo;t compile until you force the
@@ -211,8 +211,8 @@ to me.</p>
 <p>Error handling [in Go] does not obscure the flow of control.</p>
 </blockquote>
 
-<p>Because an <code>error</code> in Go must either be 1) handled/ignored right then and there
-or 2) returned to the caller, you can track the path of the <code>error</code>.</p>
+<p>Since an <code>error</code> in Go must either be 1) handled/ignored right then and there or 2)
+returned to the caller.  You can track the path of the <code>error</code>.</p>
 
 <p>The flow of control is less clear in other languages.  Take Swift:</p>
 
@@ -298,6 +298,13 @@ You&rsquo;re a programmer after all.  Write an abstraction!</p>
         os.Exit(1)
     }
 }
+
+// Or as a kind user on reddit refactored:
+func checkErr(err error) {
+    if err != nil {
+        log.Fatal(&quot;ERROR:&quot;, err)
+    }
+}
 </code></pre>
 
 <p>In a CLI tool, this works fine.  But, um, don&rsquo;t do that in a web server.</p>
@@ -321,8 +328,6 @@ you&rsquo;re writing rock solid, stable software. That&rsquo;s not a bad deal.</
 	            <i class="fa fa-fw fa-tag"></i>
 	            
 	            <a href="https://davidnix.github.io/tags/Go">Go </a>
-	            
-	            <a href="https://davidnix.github.io/tags/Opinion">Opinion </a>
 	            
 	            </div>
 	        </section>

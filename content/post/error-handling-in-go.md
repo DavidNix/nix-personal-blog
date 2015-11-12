@@ -1,7 +1,7 @@
 +++
 date = "2015-11-10T21:47:04-07:00"
 title = "Go's Error Handling is Elegant"
-tags = ["Go", "Opinion"]
+tags = ["Go"]
 +++
 
 I'm writing in response to [this
@@ -103,9 +103,9 @@ if err != nil {
 }
 ```
 But you could argue, only one caller needs the try/catch dance.  Anything
-downstream could throw exceptions all the live long day. In my experience with
-Swift, that's rarely the case.  I find myself deciding between `do/catch` or
-`try?` quite often, especially in unit tests. It's quite laborious.
+downstream could throw exceptions all the live long day. In practice, that's
+rarely the case.  With Swift, I find myself deciding between `do/catch` or
+`try?` quite often, especially in unit tests.
 
 Interpreted languages, like Ruby, are more concise because you aren't required
 to handle exceptions at all.  Swift and Java won't compile until you force the
@@ -157,8 +157,8 @@ Rob Pike also writes:
 
 > Error handling [in Go] does not obscure the flow of control.
 
-Because an `error` in Go must either be 1) handled/ignored right then and there
-or 2) returned to the caller, you can track the path of the `error`.
+Since an `error` in Go must either be 1) handled/ignored right then and there or 2)
+returned to the caller.  You can track the path of the `error`.
 
 The flow of control is less clear in other languages.  Take Swift:
 
@@ -249,6 +249,13 @@ func checkErr(err error) {
     if err != nil {
         fmt.Println("ERROR:", err)
         os.Exit(1)
+    }
+}
+
+// Or as a kind user on reddit refactored:
+func checkErr(err error) {
+    if err != nil {
+        log.Fatal("ERROR:", err)
     }
 }
 ```

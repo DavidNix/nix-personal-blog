@@ -110,9 +110,9 @@ if err != nil {
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;But you could argue, only one caller needs the try/catch dance.  Anything
-downstream could throw exceptions all the live long day. In my experience with
-Swift, that&amp;rsquo;s rarely the case.  I find myself deciding between &lt;code&gt;do/catch&lt;/code&gt; or
-&lt;code&gt;try?&lt;/code&gt; quite often, especially in unit tests. It&amp;rsquo;s quite laborious.&lt;/p&gt;
+downstream could throw exceptions all the live long day. In practice, that&amp;rsquo;s
+rarely the case.  With Swift, I find myself deciding between &lt;code&gt;do/catch&lt;/code&gt; or
+&lt;code&gt;try?&lt;/code&gt; quite often, especially in unit tests.&lt;/p&gt;
 
 &lt;p&gt;Interpreted languages, like Ruby, are more concise because you aren&amp;rsquo;t required
 to handle exceptions at all.  Swift and Java won&amp;rsquo;t compile until you force the
@@ -168,8 +168,8 @@ to me.&lt;/p&gt;
 &lt;p&gt;Error handling [in Go] does not obscure the flow of control.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Because an &lt;code&gt;error&lt;/code&gt; in Go must either be 1) handled/ignored right then and there
-or 2) returned to the caller, you can track the path of the &lt;code&gt;error&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Since an &lt;code&gt;error&lt;/code&gt; in Go must either be 1) handled/ignored right then and there or 2)
+returned to the caller.  You can track the path of the &lt;code&gt;error&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;The flow of control is less clear in other languages.  Take Swift:&lt;/p&gt;
 
@@ -253,6 +253,13 @@ You&amp;rsquo;re a programmer after all.  Write an abstraction!&lt;/p&gt;
     if err != nil {
         fmt.Println(&amp;quot;ERROR:&amp;quot;, err)
         os.Exit(1)
+    }
+}
+
+// Or as a kind user on reddit refactored:
+func checkErr(err error) {
+    if err != nil {
+        log.Fatal(&amp;quot;ERROR:&amp;quot;, err)
     }
 }
 &lt;/code&gt;&lt;/pre&gt;
