@@ -62,7 +62,7 @@ if err != nil {
 
 Let's take a break from Go and compare it to other languages.
 
-There's ye olde Java:
+There's ~~ye olde~~ classic Java:
 
 ```java
 // Java
@@ -157,8 +157,8 @@ Rob Pike also writes:
 
 > Error handling [in Go] does not obscure the flow of control.
 
-Since an `error` in Go must either be 1) handled/ignored right then and there or 2)
-returned to the caller.  You can track the path of the `error`.
+Because an `error` in Go must either be 1) handled/ignored right then and there
+or 2) returned to the caller, you can track the path of the `error`.
 
 The flow of control is less clear in other languages.  Take Swift:
 
