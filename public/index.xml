@@ -71,7 +71,7 @@ if err != nil {
 
 &lt;p&gt;Let&amp;rsquo;s take a break from Go and compare it to other languages.&lt;/p&gt;
 
-&lt;p&gt;There&amp;rsquo;s ye olde Java:&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s &lt;del&gt;ye olde&lt;/del&gt; classic Java:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;// Java
 try {
@@ -168,8 +168,8 @@ to me.&lt;/p&gt;
 &lt;p&gt;Error handling [in Go] does not obscure the flow of control.&lt;/p&gt;
 &lt;/blockquote&gt;
 
-&lt;p&gt;Since an &lt;code&gt;error&lt;/code&gt; in Go must either be 1) handled/ignored right then and there or 2)
-returned to the caller.  You can track the path of the &lt;code&gt;error&lt;/code&gt;.&lt;/p&gt;
+&lt;p&gt;Because an &lt;code&gt;error&lt;/code&gt; in Go must either be 1) handled/ignored right then and there
+or 2) returned to the caller, you can track the path of the &lt;code&gt;error&lt;/code&gt;.&lt;/p&gt;
 
 &lt;p&gt;The flow of control is less clear in other languages.  Take Swift:&lt;/p&gt;
 
