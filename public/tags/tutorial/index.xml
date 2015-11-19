@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tutorial on David Nix&#39;s Blog - Tutorials, Opinions, Rants</title>
-    <link>https://davidnix.io/tags/tutorial/</link>
+    <link>davidnix.io/tags/tutorial/</link>
     <description>Recent content in Tutorial on David Nix&#39;s Blog - Tutorials, Opinions, Rants</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Thu, 19 Nov 2015 07:27:48 -0700</lastBuildDate>
-    <atom:link href="https://davidnix.io/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="davidnix.io/tags/tutorial/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Building Modern Web Apps in Go Part 2</title>
-      <link>https://davidnix.io/post/building-modern-web-apps-in-go-part-2/</link>
+      <link>/davidnix.io/post/building-modern-web-apps-in-go-part-2/</link>
       <pubDate>Thu, 19 Nov 2015 07:27:48 -0700</pubDate>
       
-      <guid>https://davidnix.io/post/building-modern-web-apps-in-go-part-2/</guid>
+      <guid>/davidnix.io/post/building-modern-web-apps-in-go-part-2/</guid>
       <description>&lt;p&gt;This was a presentation I gave at the Denver Go Meetup in November 2015.&lt;/p&gt;
 
 &lt;p&gt;My goal is to teach others and myself how to build a robust, modern web application in Go. My hope is that startups will turn to Go instead of Rails or Django when building web apps.&lt;/p&gt;
@@ -42,7 +42,7 @@
 
 &lt;p&gt;This is the first in a multi-part series.  How many parts?  I’m not sure yet.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://davidnix.io/post/building-modern-web-apps-in-go-part-1&#34;&gt;Part 1&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;davidnix.io/post/building-modern-web-apps-in-go-part-1&#34;&gt;Part 1&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;Part 2 (you’re reading it)&lt;/p&gt;
 
@@ -56,10 +56,10 @@ src=&#34;//speakerdeck.com/assets/embed.js&#34;&gt;&lt;/script&gt;
     
     <item>
       <title>Building Modern Web Apps in Go Part 1</title>
-      <link>https://davidnix.io/post/building-modern-web-apps-in-go-part-1/</link>
+      <link>/davidnix.io/post/building-modern-web-apps-in-go-part-1/</link>
       <pubDate>Thu, 24 Sep 2015 06:59:45 -0700</pubDate>
       
-      <guid>https://davidnix.io/post/building-modern-web-apps-in-go-part-1/</guid>
+      <guid>/davidnix.io/post/building-modern-web-apps-in-go-part-1/</guid>
       <description>&lt;p&gt;This was a presentation I gave at the Denver Go Meetup in September 2015.&lt;/p&gt;
 
 &lt;p&gt;My goal is to teach others and myself how to build a robust, modern web application in Go. My hope is that startups will turn to Go instead of Rails or Django when building web apps.&lt;/p&gt;
@@ -89,7 +89,7 @@ src=&#34;//speakerdeck.com/assets/embed.js&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;Part 1 (you’re reading it)&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://davidnix.io/post/building-modern-web-apps-in-go-part-2&#34;&gt;Part 2&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;davidnix.io/post/building-modern-web-apps-in-go-part-2&#34;&gt;Part 2&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Warning:&lt;/strong&gt;  I make fun of Rails a LOT.  On purpose.  If you’re BFFs with DHH, consider yourself warned.&lt;/p&gt;
 
