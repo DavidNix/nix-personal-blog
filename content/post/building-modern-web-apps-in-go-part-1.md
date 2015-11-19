@@ -35,4 +35,10 @@ Part 1 (you’re reading it)
 
 **Warning:**  I make fun of Rails a LOT.  On purpose.  If you’re BFFs with DHH, consider yourself warned.
 
-I welcome any feedback or criticism.
+I welcome any feedback or criticism.  
+
+[View the sample code here.](https://github.com/DavidNix/modern-web-apps-in-go)
+
+<script async class="speakerdeck-embed"
+data-id="91a1a570e652473f8247b7668c4ebaa5" data-ratio="1.77777777777778"
+src="//speakerdeck.com/assets/embed.js"></script>

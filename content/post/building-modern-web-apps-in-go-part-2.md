@@ -33,4 +33,8 @@ This is the first in a multi-part series.  How many parts?  I’m not sure yet.
 
 Part 2 (you’re reading it)
 
-I welcome any feedback or criticism.
+I welcome any feedback or criticism.  
+
+<script async class="speakerdeck-embed"
+data-id="fbc89f873cb8493998f341c8dc0c16d6" data-ratio="1.77777777777778"
+src="//speakerdeck.com/assets/embed.js"></script>
