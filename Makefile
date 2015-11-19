@@ -3,6 +3,7 @@
 default: deploy
 
 deploy: clean
+	echo "davidnix.io" > ./public/CNAME
 	hugo
 	git add -A
 	git commit -m "RELEASE `date`"
