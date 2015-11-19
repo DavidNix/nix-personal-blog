@@ -1,7 +1,7 @@
 +++
 date = "2015-11-10T21:47:04-07:00"
 title = "Go's Error Handling is Elegant"
-tags = ["Go"]
+tags = ["go", "opinion"]
 +++
 
 I'm writing in response to [this
