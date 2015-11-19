@@ -23,7 +23,7 @@ What is a “modern web app”?  It’s a server that does all this:
 * Live reloading
 * Logging
 
-and more.
+and more.  
 
 **Disclaimer:**  This is an exploration. I am not an expert on the subject. I’ve built microservices in Go but have yet to build a monolith similar to Rails or Django.
 
