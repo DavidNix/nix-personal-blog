@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Opinion on Nix Blog - Tutorials, Opinions, Rants</title>
-    <link>https://davidnix.github.io/tags/opinion/</link>
-    <description>Recent content in Opinion on Nix Blog - Tutorials, Opinions, Rants</description>
+    <title>Opinion on David Nix&#39;s Blog - Tutorials, Opinions, Rants</title>
+    <link>https://davidnix.io/tags/opinion/</link>
+    <description>Recent content in Opinion on David Nix&#39;s Blog - Tutorials, Opinions, Rants</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 10 Nov 2015 21:47:04 -0700</lastBuildDate>
-    <atom:link href="https://davidnix.github.io/tags/opinion/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://davidnix.io/tags/opinion/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Go&#39;s Error Handling is Elegant</title>
-      <link>https://davidnix.github.io/post/error-handling-in-go/</link>
+      <link>https://davidnix.io/post/error-handling-in-go/</link>
       <pubDate>Tue, 10 Nov 2015 21:47:04 -0700</pubDate>
       
-      <guid>https://davidnix.github.io/post/error-handling-in-go/</guid>
+      <guid>https://davidnix.io/post/error-handling-in-go/</guid>
       <description>
 
 &lt;p&gt;I&amp;rsquo;m writing in response to &lt;a href=&#34;http://spaces-vs-tabs.com/4-weeks-of-golang-the-good-the-bad-and-the-ugly/&#34;&gt;this
@@ -71,7 +71,7 @@ if err != nil {
 
 &lt;p&gt;Let&amp;rsquo;s take a break from Go and compare it to other languages.&lt;/p&gt;
 
-&lt;p&gt;There&amp;rsquo;s ye olde Java:&lt;/p&gt;
+&lt;p&gt;There&amp;rsquo;s &lt;del&gt;ye olde&lt;/del&gt; classic Java:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-java&#34;&gt;// Java
 try {
@@ -110,9 +110,9 @@ if err != nil {
 &lt;/code&gt;&lt;/pre&gt;
 
 &lt;p&gt;But you could argue, only one caller needs the try/catch dance.  Anything
-downstream could throw exceptions all the live long day. In my experience with
-Swift, that&amp;rsquo;s rarely the case.  I find myself deciding between &lt;code&gt;do/catch&lt;/code&gt; or
-&lt;code&gt;try?&lt;/code&gt; quite often, especially in unit tests. It&amp;rsquo;s quite laborious.&lt;/p&gt;
+downstream could throw exceptions all the live long day. In practice, that&amp;rsquo;s
+rarely the case.  With Swift, I find myself deciding between &lt;code&gt;do/catch&lt;/code&gt; or
+&lt;code&gt;try?&lt;/code&gt; quite often, especially in unit tests.&lt;/p&gt;
 
 &lt;p&gt;Interpreted languages, like Ruby, are more concise because you aren&amp;rsquo;t required
 to handle exceptions at all.  Swift and Java won&amp;rsquo;t compile until you force the
@@ -253,6 +253,13 @@ You&amp;rsquo;re a programmer after all.  Write an abstraction!&lt;/p&gt;
     if err != nil {
         fmt.Println(&amp;quot;ERROR:&amp;quot;, err)
         os.Exit(1)
+    }
+}
+
+// Or as a kind user on reddit refactored:
+func checkErr(err error) {
+    if err != nil {
+        log.Fatal(&amp;quot;ERROR:&amp;quot;, err)
     }
 }
 &lt;/code&gt;&lt;/pre&gt;

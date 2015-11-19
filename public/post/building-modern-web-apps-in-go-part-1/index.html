@@ -4,20 +4,20 @@
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-    <title>test &middot; Nix Blog - Tutorials, Opinions, Rants</title>
+    <title>Building Modern Web Apps in Go Part 1 &middot; David Nix&#39;s Blog - Tutorials, Opinions, Rants</title>
     <meta name="author" content="David Nix">
-    <meta name="description" content="Your description of the blog">
+    <meta name="description" content="David Nix&#39;s Blog">
     <meta name="generator" content="Hugo 0.14" />
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
-    <link rel="shortcut icon" href="http://localhost:1313/img/favicon.ico">
+    <link rel="shortcut icon" href="https://davidnix.io/img/favicon.ico">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/2.1.2/normalize.min.css">
 
     <!-- Stylesheets -->
-    <link rel="stylesheet" href="http://localhost:1313/css/screen.css">
-    <link rel="stylesheet" href="http://localhost:1313/css/github.css">
+    <link rel="stylesheet" href="https://davidnix.io/css/screen.css">
+    <link rel="stylesheet" href="https://davidnix.io/css/github.css">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/styles/default.min.css">
 
     <!-- Stylesheet for theme color -->
@@ -34,17 +34,17 @@
 
     <header id="site-head">
 	
-	<h1 class="blog-title"><a href="http://localhost:1313/">David Nix</a></h1>
+	<h1 class="blog-title"><a href="https://davidnix.io/">David Nix</a></h1>
 	
 	
-	<h1 class="blog-subtitle">Startup Engineer, Golang and iOS</h1>
+	<h1 class="blog-subtitle">Startup Software Developer, Go and iOS</h1>
 	
 </header>
     
 <nav class="menu" role="nav">
     <ul>
         
-        	<li class="nav nav-current"><a href="http://localhost:1313/about">About</a></li>
+        	<li class="nav nav-current"><a href="https://davidnix.io/about">About</a></li>
       	
     </ul>
 </nav>
@@ -53,17 +53,61 @@
     <main class="content" role="main">
 	    <article class="post">
 	        <header>
-	        <h1 class="post-title">test</h1>
-	        <div class="post-meta"><time datetime="10 November 2015">10 November 2015</time></div>
+	        <h1 class="post-title">Building Modern Web Apps in Go Part 1</h1>
+	        <div class="post-meta"><time datetime="24 September 2015">24 September 2015</time></div>
 	        </header>
 
 	        <section class="post-content">
-	            
+	            <p>This was a presentation I gave at the Denver Go Meetup in September 2015.</p>
+
+<p>My goal is to teach others and myself how to build a robust, modern web application in Go. My hope is that startups will turn to Go instead of Rails or Django when building web apps.</p>
+
+<p>What is a “modern web app”?  It’s a server that does all this:</p>
+
+<ul>
+<li>Routing</li>
+<li>Middleware</li>
+<li>Request Scoped Data</li>
+<li>User Authentication</li>
+<li>Interfaces with a database</li>
+<li>Compiles js, csss, images and other assets</li>
+<li>Renders templates and views</li>
+<li>Serves static files</li>
+<li>Shuts down gracefully</li>
+<li>Sends transactional email</li>
+<li>Live reloading</li>
+<li>Logging</li>
+</ul>
+
+<p>and more.</p>
+
+<p><strong>Disclaimer:</strong>  This is an exploration. I am not an expert on the subject. I’ve built microservices in Go but have yet to build a monolith similar to Rails or Django.</p>
+
+<p>This is the first in a multi-part series.  How many parts?  I’m not sure yet.</p>
+
+<p>Part 1 (you’re reading it)</p>
+
+<p><a href="https://davidnix.io/post/building-modern-web-apps-in-go-part-2">Part 2</a></p>
+
+<p><strong>Warning:</strong>  I make fun of Rails a LOT.  On purpose.  If you’re BFFs with DHH, consider yourself warned.</p>
+
+<p>I welcome any feedback or criticism.</p>
+
+<p><a href="https://github.com/DavidNix/modern-web-apps-in-go">View the sample code here.</a></p>
+
+<script async class="speakerdeck-embed"
+data-id="91a1a570e652473f8247b7668c4ebaa5" data-ratio="1.77777777777778"
+src="//speakerdeck.com/assets/embed.js"></script>
+
 	        </section>
 
 	        <section class="post-tags" style="padding-bottom:60px;">
 	            <div class="post-meta tags">
 	            <i class="fa fa-fw fa-tag"></i>
+	            
+	            <a href="https://davidnix.io/tags/go">go </a>
+	            
+	            <a href="https://davidnix.io/tags/tutorial">tutorial </a>
 	            
 	            </div>
 	        </section>
@@ -99,9 +143,9 @@
 	        	<div id="disqus_thread"></div>
 <script type="text/javascript">
     var disqus_shortname = 'davidnix';
-    var disqus_identifier = 'http:\/\/localhost:1313\/post\/test\/';
-    var disqus_title = 'test';
-    var disqus_url = 'http:\/\/localhost:1313\/post\/test\/';
+    var disqus_identifier = 'https:\/\/davidnix.io\/post\/building-modern-web-apps-in-go-part-1\/';
+    var disqus_title = 'Building Modern Web Apps in Go Part 1';
+    var disqus_url = 'https:\/\/davidnix.io\/post\/building-modern-web-apps-in-go-part-1\/';
 
     (function() {
         var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
@@ -118,15 +162,15 @@
 	        <section class="share">
 	            <p class="backtotop"><a data-scroll href="#site-head"><i class="fa fa-lg fa-fw fa-angle-double-up"></i></a><a data-scroll class="backtotoptext" href="#site-head"> Back to top</a></p>
 	            <p class="info prompt">Share</p>
-	            <a href="http://twitter.com/share?text=test&url=http%3a%2f%2flocalhost%3a1313%2fpost%2ftest%2f" title="Share on Twitter"
+	            <a href="http://twitter.com/share?text=Building%20Modern%20Web%20Apps%20in%20Go%20Part%201&url=https%3a%2f%2fdavidnix.io%2fpost%2fbuilding-modern-web-apps-in-go-part-1%2f" title="Share on Twitter"
 	                onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
 	                <i class="fa fa-2x fa-fw fa-twitter-square"></i> <span class="hidden">Twitter</span>
 	            </a>
-	            <a href="https://www.facebook.com/sharer/sharer.php?u=http%3a%2f%2flocalhost%3a1313%2fpost%2ftest%2f" title="Share on Facebook"
+	            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3a%2f%2fdavidnix.io%2fpost%2fbuilding-modern-web-apps-in-go-part-1%2f" title="Share on Facebook"
 	                onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
 	                <i class="fa fa-2x fa-fw fa-facebook-square" style="margin-left: -8px"></i> <span class="hidden">Facebook</span>
 	            </a>
-	            <a href="https://plus.google.com/share?url=http%3a%2f%2flocalhost%3a1313%2fpost%2ftest%2f" title="Share on Google+"
+	            <a href="https://plus.google.com/share?url=https%3a%2f%2fdavidnix.io%2fpost%2fbuilding-modern-web-apps-in-go-part-1%2f" title="Share on Google+"
 	               onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
 	                <i class="fa fa-2x fa-fw fa-google-plus-square" style="margin-left: -8px"></i> <span class="hidden">Google+</span>
 	            </a>
@@ -134,9 +178,9 @@
 
 	        <footer class="post-footer">
 	            <section class="author">
-    <div class="authorimage" style="background: url(http://localhost:1313/img/avatar.png)"></div>
+    <div class="authorimage" style="background: url(https://davidnix.io/img/avatar.png)"></div>
     <h4>David Nix</h4>
-    <p class="bio">I&rsquo;m a computer.</p>
+    <p class="bio">I love code and startups.</p>
     <p class="meta">
       <i class="fa fa-fw fa-map-marker"></i> Denver, CO
     </p>
@@ -162,13 +206,13 @@
 		    <a href="" target="_blank" title="RSS"><i class="fa fa-2x fa-fw fa-rss"></i> <span class="hidden">RSS</span></a>
 		</section>
 
-		<section class="copyright">&copy; 2015 <a href="http://localhost:1313/">David Nix</a>. </section>
+		<section class="copyright">&copy; 2015 <a href="https://davidnix.io/">David Nix</a>. </section>
 	</div>
 </footer>
 
     <script type="text/javascript">window.Prod = window.location.hostname != "localhost";</script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-<script src="http://localhost:1313/js/smooth-scroll.min.js"></script>
+<script src="https://davidnix.io/js/smooth-scroll.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/8.3/highlight.min.js"></script>
 
 <script>
@@ -195,11 +239,8 @@
     analytics.page();
 </script>
 
-<script src="http://localhost:1313/js/site.js"></script>
+<script src="https://davidnix.io/js/site.js"></script>
 
 
-<script data-no-instant>document.write('<script src="http://'
-        + (location.host || 'localhost').split(':')[0]
-		+ ':1313/livereload.js?mindelay=10"></'
-        + 'script>')</script></body>
+</body>
 </html>
