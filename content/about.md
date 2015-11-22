@@ -24,4 +24,4 @@ In a nutshell:
 
 # Consulting
 
-I am available for part-time consulting for iOS.  I have experience architecting iOS apps for long-term maintainability and stability.  Please contact me using a method below.  My first born and employment at [CirrusMD](http://cirrusmd.com) prevent me from contract work.
+I am available for part-time consulting.  I have extensive experience architecting iOS apps for long-term maintainability and stability.  My first born and employment at [CirrusMD](http://cirrusmd.com) prevent me from contract work.  Please contact me using a method below.  
