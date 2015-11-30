@@ -7,6 +7,8 @@ tags = ["ios", "opinion", "anti-pattern"]
 Don’t use
 [NSNotifcationCenter](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSNotificationCenter_Class/)!
 
+Most of the time it's a HUGE mistake.
+
 It's ok to use the center to respond to iOS driven events, like
 `UIKeyboardDidShowNotification`. But don't use it to wire up message passing in
 your own code. I'm begging you.  Don't do it.
@@ -17,7 +19,7 @@ developers.  What’s the number one mistake I see?  Abuse of
 exhibit.
 
 That's how you should view NSNotifications, as crap flying around your
-codebase.  I'll explain why and give alternatives in a little bit. And I'll
+codebase.  I'll explain why and give alternatives in a bit. And I'll
 show you when it's appropriate to use NSNotificationCenter.
 
 So this article is dedicated to you, fresh-off-the-boat iOS developers. I'm
@@ -50,37 +52,38 @@ notifies its Observers of the change.  The Subject's job is then finished. The
 Observers execute code in response to the change.
 
 NSNotificationCenter is a little different. Observers register with the center
-instead of a Subject. Then, any object can post notifications to the center. If
+instead of the Subject. Then, any object can post notifications to the center. If
 a notification matches, an Observer fires. This is a publish/subscribe or
 message bus pattern. But I argue it's still a flavor of the Observer pattern.
 
 Observer creates decoupled code which everyone says is a good thing. But there
-is such a thing as too much of a good thing.
+is too much of a good thing.
 
 ## The #1 reason to avoid NSNotificationCenter
 
 **Flow of control is difficult to follow.**
 
 Any part of the codebase can register an Observer. Any object in the codebase
-can post notifications.  It's like piecing together distant dots.  Ctl+Cmd+F
-becomes your only tool. A poor tool at that.
+can post notifications.  It's like piecing together distant dots.
+Control+Command+f becomes your only tool. A poor tool at that.
 
-It's easy for you to connect the dots as you're first writing code with
-NSNotifications.  Your project may never have another developer except you. But
-still, seeing code you wrote weeks or months ago might as well have been
-written by another person. Save your future self a headache and do something
-other than fire off notifications.
+As the originating author, it's easy for you to connect the dots as you're
+first writing code with NSNotifications.  Your project may never have another
+developer except you. But still, seeing code you wrote weeks or months ago
+might as well have been written by another person. Save your future self a
+headache and do something other than fire off notifications.
 
 In addition, it doesn't help Apple often uses NSNotificationCenter in the Cocoa and Cocoa Touch
 frameworks. In fact, use this [gist](https://gist.github.com/DavidNix/9596c2083380b50931e3) to see all notifications flying around.
 It's staggering. So, if you're realizing you often use NSNotifications, it's
 not your fault. Apple and beginner iOS books have deceived you.
 
+It's not your fault.
+
 # Alternatives
 
-The following is a list of alternative patterns in order of tightly coupled to
-loosely coupled dependencies. Notice NSNotificationCenter is the last option.
-It should be your last resort!
+The following is a list of alternative patterns.  Notice NSNotificationCenter
+is the last option.  It should be your last resort!
 
 Let's take an example that you have a `User` object with a `fullName` and
 `profileImage` as properties (i.e. public instance variables). You also have a
@@ -88,8 +91,9 @@ view that shows the user's full name in a `UILabel` and the profile image in a
 `UIImageView`. You want to update the view as the user edits their profile by
 changing their name or profile image.
 
+Note: All examples are Swift.
+
 ```swift
-// All examples in Swift
 class User {
     var fullName: String?
     var profileImage: UIImage?
@@ -188,30 +192,30 @@ For one, we are violating [clean
 architecture](https://blog.8thlight.com/uncle-bob/2012/08/13/the-clean-architecture.html).
 But that's beyond the scope of this article.
 
-Additionally, there are probably multiple views interested in
-the state of a user. You could add another argument to
-`User.init(...)` but that gets unwieldy fast. And you must have
-every view available when you create a `User`.
+Additionally, there are probably multiple views interested in the state of a
+user. You could add another argument to `User.init(...)` but that gets unwieldy
+fast. Not to mention, you must have every view available when you create a
+`User`, which may not be the case.
 
-Although it's bad code, it demonstrates the ease of flow of
-control. You can easily trace cause and effect when you change a property
-on a user.
+Although bad code, it demonstrates good flow of control. It's easy to trace
+cause and effect when you change a property on a user.
 
-Notice `User` and `UserProfileView` are tightly coupled. If one changes it
+Also notice `User` and `UserProfileView` are tightly coupled. If one changes it
 may cause the other one to change.  That's usually bad, but not always.  
 
 It's only bad if the coupled objects change frequently. Let's say a `User` has
 settings. A user can have one and only one `Settings` object. Tight coupling in
-this case is probably ok. There's little reason `Settings` needs further
-abstraction. The rest of the system can depend on the concrete type.
+this case is probably ok. There may be little reason `Settings` needs further
+abstraction. The rest of the system can depend on the concrete type. But of
+course, it all depends on your application.
 
-Speaking of abstraction, that brings me to:
+If you need further abstraction, look to the next pattern:
 
 ### 1. The Delegate Pattern
 
 The Delegate pattern is one of my favorites in mobile development.  Apple uses
 this pattern everywhere and with good reason. It's a great way to break
-dependencies and rely on **behavior** instead of specific types.
+dependencies and rely on **behavior** instead of concrete types.
 
 Let's define a protocol:
 
@@ -273,6 +277,7 @@ job of a view controller. Ideally, we'd refactor `UserProfileView` into a
 We have more testing but it's still painless:
 
 ```swift
+// In a UserTest.swift file
 class TestDelegate: UserDelegate {
     var lastUserChanged: User?
     
@@ -294,6 +299,7 @@ func test_userProperties() {
     XCTAssertEqual(delegate.lastUserChanged, user)
 }
 
+// In a separate UserProfileViewTest.swift file
 func test_userDidChange() {
     let user = User(delegate: nil)
     user.fullName = "C3PO"
@@ -308,17 +314,25 @@ func test_userDidChange() {
 }
 ```
 
-Notice, I created a `TestDelegate` to test that `User` calls methods on the
-delegate appropriately. I did not use an instance of `UserProfileView` even
+Notice, I created a `TestDelegate` to test that `User` calls the delegate
+method appropriately. I did not use an instance of `UserProfileView` even
 though I still could have written the test with it. `User` doesn't care at all
-what the delegate does after `User` informs the delegate of its changes.
+what the delegate does after `User` informs the delegate of its changes. This
+makes your unit tests less brittle. Now, if `UserProfileView` changes its
+behavior, `User` tests won't fail. 
 
-This separation breaks dependencies, but still doesn't obscure flow of control.
-All you have to do, in this case, is trace back to the when the user is
-created.  Then see how the delegate implements the protocol methods if, say,
-you're debugging something.
+Limiting chain reactions is the name of the game. If you change behavior in one
+section of code and seemingly unrelated tests fail, that's a sign you need to
+break more dependencies.
 
-Guess what? We're still using dependency injection. This is also valid injection.
+The Delegate Pattern breaks dependencies but doesn't obscure flow of control.
+In this case, trace back to the when `User` is created.  Then see how the
+delegate implements the protocol methods.
+
+Guess what? We're still using dependency injection. Instead of injecting a
+concrete type, we're injecting any type that conforms to a protocol.
+
+This is also valid injection.
 
 ```swift
 class User {
@@ -330,7 +344,68 @@ let user = User()
 user.delegate = UserProfileView(frame: ...)
 ```
 
-We injecting the `UserDelegate` by assignment instead of on initialization.
+We inject the `UserDelegate` by assignment instead of initialization.
+
+I use the delegate pattern all the time. In this example, it's still not a
+great choice. Why? Only one object can be a `User`'s delegate. We'll probably
+have multiple views that want to update based on the state of a `User`.
+
+So our next option is:
+
+### 2. Key-Value Observing
+
+[Key-Value
+Observing](https://developer.apple.com/library/mac/documentation/Cocoa/Conceptual/KeyValueObserving/KeyValueObserving.html) (KVO)
+is more in line with the classic Observer pattern. It's a neat feature from the
+Cocoa and Cocoa Touch framework. Unfortunately, the API is dated and therefore
+a bit odd. But it's still a powerful feature if not abused.
+
+Observers register key paths with a Subject to observe changes. A "key path",
+in this context, essentially means a property (or public instance variable) on the
+Subject.
+
+Use KVO with care. You further obscure flow of control. But, it's a good fit,
+in a typical Model-View-Controller world, when you have multiple view
+controllers that need to update their state based on the changes in a model
+object.
+
+`User` refactors to:
+
+```swift
+class User: NSObject {
+    dynamic var fullName: String?
+    dynamic var profileImage: UIImage?
+}
+```
+
+To use KVO in Swift, `User` must subclass `NSObject` and observable properites must be
+[dynamically
+dispatched](https://developer.apple.com/library/mac/documentation/Swift/Conceptual/BuildingCocoaApps/InteractingWithObjective-CAPIs.html#//apple_ref/doc/uid/TP40014216-CH4-ID57).
+
+The Observer, `UserProfileView`, becomes:
+
+```swift
+
+```
+
+### 3. The NSNotificationCenter
+
+You know what? I'm not going to show code samples here. In our `User`
+example, you should have stopped with KVO. I don't want to give you any bad
+habits.
+
+Unit testing NSNotifications is a pain too. You have to 1) test that something
+posted the appropriate notification at the appropriate time and 2) test the
+Observer has an appropriate response to the notification.
+
+Hint: Don't use `defaultCenter()` in your test suite. Inject a new
+NSNotificationCenter into each class that needs it. Then write your tests
+against that unique instance of NSNotificationCenter. I'll leave that as an exercise for you, dear
+reader. In your production code, inject the `defaultCenter()`.
+
+Like KVO, if you forget to unregister observers, the program crashes. I've
+found using the `defaultCenter()` in a test suite causes all sorts of headache
+even though you think you're unregistering at the right times.
 
 ## When to Use NSNotificationCenter
 
@@ -340,24 +415,26 @@ Ask yourself one question:
 
 If you answer "no", then don't use the NSNotificationCenter. 
 
-A good example usage of NSNotifications is `UIKeyboardDidShowNotification` and
+A good example from Apple's docs is `UIKeyboardDidShowNotification` and
 related.  The keyboard appearing affects the entire app. It gives your UI a
 chance to change itself in case the keyboard hides critical views or controls.
 Apple can't assume what views you have showing, so it's your job to respond to
-keyboard notifications and modify your UI appropriately.
+the notification and modify your UI appropriately.
 
 In my experience, I've found it effective to fire off
 `UserDidSignInNotification` and `UserDidSignOutNotification`. In a typical app,
-there can be a lot of state that needs to be set up on sign in or torn down on
+there's state that needs to be set up on sign in or torn down on
 sign out. Deleting cached data and what not.  It's an app wide event. I often
-find that deep within my network layer, if the server ever gives me a 401 or 403, I
-need to sign out that user. The network layer should know nothing about view
-state, so firing off a `UserDidSigOutNotification` or similar is effective.
+find that deep within my network layer, if the server reponds with 401 or 403,
+I need to sign out that user. The network layer doesn't care about view state,
+so firing off a `UserDidSigOutNotification` works well.
 
 ## Conclusion
 
 NSNotificationCenter is an
 [anti-pattern](https://en.wikipedia.org/wiki/Anti-pattern) most of the time.
+
+
 
 ## Additional Resources
 * https://objcsharp.wordpress.com/2013/08/28/why-nsnotificationcenter-is-bad/
