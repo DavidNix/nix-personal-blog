@@ -2,7 +2,7 @@
 date = "2015-12-03T06:59:45-07:00"
 title = "Stop Using NSNotificationCenter"
 tags = ["ios", "opinion", "anti-pattern"]
-description = "Don’t use NSNotifcationCenter. Most of the time it's a HUGE mistake. It's okay to use the center to respond to iOS driven events, like UIKeyboardDidShow Notification. But don't use it to wire up message passing in your own code"
+description = "Don’t use `NSNotifcationCenter`. Most of the time it's a HUGE mistake. It's okay to use the center to respond to iOS driven events, like `UIKeyboardDidShow` Notification. But don't use it to wire up message passing in your own code"
 +++
 
 Don’t use
