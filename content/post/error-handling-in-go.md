@@ -273,3 +273,13 @@ think a lot of programmers new to Go get frustrated because several functions
 in the standard library return errors. That means you have to handle them.
 Which in turn means you have to spend effort on them. Which in turn means
 you're writing rock solid, stable software. That's not a bad deal.
+
+## Update
+
+There's [good discussion on
+Reddit](https://www.reddit.com/r/golang/comments/3sfjho/gos_error_handling_is_elegant/)
+and counter points.
+
+Programmers, such as myself, coming from a dynamic language background tend to
+like Go's error handling.  Those coming from languages like Haskell tend to
+disagree.

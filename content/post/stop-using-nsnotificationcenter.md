@@ -1,5 +1,5 @@
 +++
-date = "2015-11-30T06:59:45-07:00"
+date = "2015-12-03T06:59:45-07:00"
 title = "Stop Using NSNotificationCenter"
 tags = ["ios", "opinion", "anti-pattern"]
 +++
@@ -487,7 +487,7 @@ In my experience, I often fire off `UserDidSignInNotification` and
 set up on sign in or torn down on sign out. Deleting cached data and what not.
 It's an app wide event. Also, deep within my network layer, if the server
 reponds with 401 or 403, I need to sign out that user. The network layer
-doesn't care about view state, so firing off a `UserDidSigOutNotification`
+doesn't care about view state, so firing off a `UserDidSignOutNotification`
 works well.
 
 **Bonus question: When should I use the Observer pattern?**
@@ -507,7 +507,16 @@ Delegate Pattern.
 
 `NSNotificationCenter` is an
 [anti-pattern](https://en.wikipedia.org/wiki/Anti-pattern) most of the time.
+Notifications make it difficult to trace flow of control.
 
+Instead of posting and responding to notifications try:
+
+* Injecting a concrete type
+* Using the Delegate Pattern
+* Then maybe Key-Value Observing
+
+The above is a non-exhaustive list of alternatives. I'd love to hear what
+others have done to mitigate using the `NSNotificationCenter`.
 
 ## Additional Resources
 * https://objcsharp.wordpress.com/2013/08/28/why-nsnotificationcenter-is-bad/
