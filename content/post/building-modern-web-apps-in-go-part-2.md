@@ -2,6 +2,7 @@
 date = "2015-11-19T07:27:48-07:00"
 title = "Building Modern Web Apps in Go Part 2"
 tags = ["go", "tutorial"]
+description = "This was a presentation I gave at the Denver Go Meetup in November 2015. My goal is to teach others and myself how to build a robust, modern web application in Go. My hope is that startups will turn to Go instead of Rails or Django when building web apps"
 +++
 
 This was a presentation I gave at the Denver Go Meetup in November 2015.  

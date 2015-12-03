@@ -2,6 +2,7 @@
 date = "2015-11-10T21:47:04-07:00"
 title = "Go's Error Handling is Elegant"
 tags = ["go", "opinion"]
+description = "The Go authors put a lot of thought into error handling.  I feel they came up with one of the better solutions out there.  It's simple and elegant"
 +++
 
 I'm writing in response to [this
