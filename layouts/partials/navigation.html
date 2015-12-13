@@ -1,6 +1,8 @@
 {{ if .Site.Menus.main }}
 <nav class="menu" role="nav">
     <ul>
+        <li class="nav nav-current"><a href="/tags/ios">iOS</a></li>
+        <li class="nav nav-current"><a href="/tags/go">Go</a></li>
         {{ range .Site.Menus.main }}
         	<li class="nav nav-current"><a href="{{ .URL }}">{{ .Name }}</a></li>
       	{{end}}
