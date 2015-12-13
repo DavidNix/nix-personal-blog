@@ -5,14 +5,15 @@ tags = ["ios", "opinion", "anti-pattern"]
 description = "Don’t use `NSNotifcationCenter`. Most of the time it's a HUGE mistake. It's okay to use the center to respond to iOS driven events, like `UIKeyboardDidShow` Notification. But don't use it to wire up message passing in your own code"
 +++
 
-Don’t use
-[NSNotifcationCenter](https://developer.apple.com/library/mac/documentation/Cocoa/Reference/Foundation/Classes/NSNotificationCenter_Class/)!
+**Update:** Some readers think I advocate *never* using
+`NSNotificationCenter.defaultCenter()`. Never is a strong word.
+
+For example, it's okay to use the center to respond to iOS driven events, like
+`UIKeyboardDidShowNotification`. 
+
+What I'm asking is don't use it to wire up message passing in your own code. 
 
 Most of the time it's a HUGE mistake.
-
-It's okay to use the center to respond to iOS driven events, like
-`UIKeyboardDidShowNotification`. But don't use it to wire up message passing in
-your own code. 
 
 Don't do it.
 
