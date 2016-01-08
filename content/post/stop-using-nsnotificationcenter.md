@@ -521,5 +521,6 @@ The above is a non-exhaustive list of alternatives. I'd love to hear what
 others have done to mitigate using the `NSNotificationCenter`.
 
 ## Additional Resources
+* http://blog.jaredsinclair.com/post/136408895215/nsnotificationcenter-is-probably-an-anti-pattern
 * https://objcsharp.wordpress.com/2013/08/28/why-nsnotificationcenter-is-bad/
 * https://developer.apple.com/videos/play/wwdc2015-408/
