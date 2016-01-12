@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html" charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    
 
     <title>{{ .Title }} &middot; {{ .Site.Title }}</title>
     <meta name="author" content="{{ with .Site.Params.name }}{{ . }}{{ end }}">
@@ -11,6 +12,8 @@
     <meta name="HandheldFriendly" content="True">
     <meta name="MobileOptimized" content="320">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+
+    <link rel="alternate" type="application/atom+xml" title="RSS Feed for davidnix.io" href="/index.xml" />
 
     <link rel="shortcut icon" href="{{ .Site.BaseURL }}img/favicon.ico">
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/2.1.2/normalize.min.css">
