@@ -1,5 +1,5 @@
 +++
-date = "2016-06-08T09:00:00-06:00"
+date = "2016-06-27T09:00:00-06:00"
 title = "How to Ditch Storyboards and Nibs Forever"
 tags = ["ios", "ui"]
 description = "It's an ongoing debate between iOS devs. Do I layout my UI with storyboards and nibs or not? I finally found one solution that let me ditch them forever."
@@ -9,23 +9,25 @@ It's an ongoing debate between iOS devs. Do I layout my UI with storyboards and
 nibs or not? I finally found one solution that let me ditch 
 them forever.
 
-Storyboard problems are well documented. They don't work with version control. They
-can get so bloated that debugging them is nearly impossible. The files can get so
-huge, you see the beach ball of death every time you open one. Keeping
+Storyboard problems are well documented. They don't work with version control.
+They get so bloated that debugging is nearly impossible. The files grow
+so huge, you see the beach ball of death every time you open one. Keeping
 IBOutlets, IBActions, and cell identifiers in sync with your source files is
-tricky, often leading to runtime exceptions if you rename the outlets in your
-source code.
+tricky. It often leads to runtime exceptions if you rename something.
 
-Up until recently, I chose from three options for view layout:
+Until recently, I chose from four options for view layout:
 
-1. Old school frame manipulation with `UIViewAutoResizing` mask
+1. Old school frame manipulation with `UIViewAutoResizing` mask (aka Springs
+   and Struts)
 2. Create `NSLayoutConstraint`s in code
 3. Use Storyboards and Nibs
+4. iOS 9's NSLayoutAnchor
 
 I always chose option 3. I didn't want to go back to frame arithmetic and
-calling `sizeThatFits:` everywhere. 
+calling `sizeThatFits:` everywhere. I still had to support iOS 8, so #4 was
+out.
 
-I've always wanted to be one of those "purests" and write all of my UI in code. But
+I've always wanted to be one of those "purests" and write all my UI in code. But
 let's face it, Apple's Auto Layout API is verbose and confusing. One method to
 do everything.
 
@@ -72,27 +74,12 @@ Other benefits I've found:
 * Handles bookkeeping so you can easily update constraints
 * One of the best uses of method overloading I've seen
 
-## An Example
+## A Comparison
 
-Let's keep it simple. I want a view that has margins to its superview.
+Let's keep it simple. I want a view that's inset from its parent on each side
+by 10 points.
 
-Here's how you can do it in SnapKit:
-
-```swift
-let parent = UIView()
-let view = UIView()
-parent.addSubview(view)
-
-view.snp_makeConstraints { make in
-    make.edges.equalTo(EdgeInsets(top: 10, left: 10, bottom: -10, right: -10))
-}
-```
-
-As you can see, SnapKit uses the [Builder
-Pattern](https://en.wikipedia.org/wiki/Builder_pattern) with a clever use of
-closures to achieve a concise and readable DSL.
-
-Versus how you would do it with standard UIKit:
+How you would do it with standard UIKit:
 
 ```swift
 let parent = UIView()
@@ -144,7 +131,9 @@ let right = NSLayoutConstraint(
 parent.addConstraints([top, left, bottom, right])
 ```
 
-*Painful.* Ok, now let's see Visual Format.
+*Painful.* I needed a couple tries to get it right.
+
+Ok, now let's see Visual Format.
 
 ```swift
 let parent = UIView()
@@ -159,20 +148,68 @@ let horizontal = NSLayoutConstraint.constraintsWithVisualFormat("H:|-10-[view]-1
 parent.addConstraints(vertical + horizontal)
 ```
 
-Visual Format is less verbose than raw `NSLayoutConstraint`s. However, I caused
-two runtime exceptions because of typos in the visual format string. 
+More concise than raw layout constraints, but I caused 2 runtime
+exceptions trying to get this right.
+
+And NSLayoutAnchor introduced in iOS 9.
+
+```swift
+let parent = UIView()
+let view = UIView()
+parent.addSubview(view)
+
+view.translatesAutoresizingMaskIntoConstraints = false
+view.leadingAnchor.constraintEqualToAnchor(view.leadingAnchor, constant: 10).active = true
+view.topAnchor.constraintEqualToAnchor(view.topAnchor, constant: 10).active = true
+view.trailingAnchor.constraintEqualToAnchor(view.trailingAnchor, constant: -10).active = true
+view.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: -10).active = true
+```
+
+The above is improvement over visual format, even though it's more verbose.
+But, I still have to remember to set
+`translatesAutoresizingMaskIntoConstraints` to false, and to set `active =
+true`. It's also hard to read. At a glance, all I see is words in a blender.
+
+And finally, SnapKit:
+
+```swift
+let parent = UIView()
+let view = UIView()
+parent.addSubview(view)
+
+view.snp_makeConstraints { make in
+    make.edges.equalTo(EdgeInsets(top: 10, left: 10, bottom: -10, right: -10))
+}
+```
+
+As you can see, SnapKit uses the [Builder
+Pattern](https://en.wikipedia.org/wiki/Builder_pattern) with a clever use of
+closures to achieve a concise and readable DSL.
+
+What's great is I don't have to remember
+`translatesAutoresizingMaskIntoConstraints`. And SnapKit provides
+`snp_updateConstraints`, so you don't have to capture references to your
+constraints. (You still can if you want.) 
+
+The declarative syntax is easy to read. Layout in the closure body has the
+added benefit of visually separating layout code from other code. I can glance
+at the closure's body and get the gist of the view's layout. 
 
 ## Caveats
 
 * Snapkit is Swift only. But the authors still maintain their original
   Objective C library, [Masonry](https://github.com/SnapKit/Masonry).
 * With watchOS, you have to use Storyboards. Shucks.
-* I personally haven't dived into `UIStackView` because I'm still supporting
+* I haven't tried `UIStackView` because I'm still supporting
   iOS 8. `UIStackView` may alleviate some Auto Layout pain.
 
 ## What about other Auto Layout DSLs?
 
-I haven't tried other popular libraries like
+I haven't tested other popular libraries like
 [Cartography](https://github.com/robb/Cartography) and
 [PureLayout](https://github.com/PureLayout/PureLayout). When I stumbled upon
 SnapKit, I instantly loved their API and stuck with it.
+
+# Conclusion
+
+Give SnapKit a try and free yourself from Storyboards and Nibs.
