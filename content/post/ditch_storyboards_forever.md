@@ -168,7 +168,7 @@ view.bottomAnchor.constraintEqualToAnchor(view.bottomAnchor, constant: -10).acti
 The above is improvement over visual format, even though it's more verbose.
 But, I still have to remember to set
 `translatesAutoresizingMaskIntoConstraints` to false, and to set `active =
-true`. It's also hard to read. At a glance, all I see is words in a blender.
+true`. It's also hard to read. At a glance, all I see is a wall of words.
 
 And finally, SnapKit:
 
